@@ -9,7 +9,7 @@ console.log('main.js is working')
 /*********************/
 
 function difficultLevel(userChoise) {
-    // A function accepting a integer "userChoise" and returning a integer according to the game rules as described in README.md; return -1 if parameter is invalid.
+    // A function accepting an integer "userChoise" and returning an integer according to the game rules as described in README.md; return -1 if parameter is invalid.
     switch (userChoise) {
         case 1:
             return 100
@@ -24,7 +24,7 @@ function difficultLevel(userChoise) {
 
 
 function randomNumberSet(n, max) {
-    //A function accepting two integer "n" and "max", and returning a set of n different ingeters from 1 to max included. Return -1 if either parameter is not number of smaller than 1.
+    //A function accepting two integer "n" and "max", and returning a set of n different ingeters from 1 to max, included. Return -1 if either parameter is not number of smaller than 1.
     var randomNumbers = new Set()
 
     if (isNaN(n) || n < 1 || isNaN(max) || n < 1) {return -1}  // Validation
@@ -48,6 +48,19 @@ function promtpUser(max, invalid_array) {
 }
 
 
+function getting_userValue(max, invalid_array, HTML_idElement) {
+    //A function accepting an integer 'max', an array 'invalid_array' and a 'HTML_idElement'; and asking, via the 'message_to_user' function, the user to enter a number 'user_value', by using clicking on the the HTML element. 
+    message_to_user('text-message', 'Choose a number by clicking on the board.') //VALIDATION NOT NEEDED
+    return document.getElementById(HTML_idElement).addEventListener('click', 
+                    function(event) {
+                        column = Math.ceil(event.offsetX / 40)
+                        row = Math.ceil(event.offsetY / 40)
+                        return 20 * (row - 1) + column
+                    }
+            )
+}
+
+
 // TODO -- VALIDATION
 function resultOfAttempt(user_value, invalid_set) {
     //A function accepting a number 'user_value' and a set 'invalid_set'; and returing true if 'user_value' is not an element of the set.
@@ -58,7 +71,7 @@ function resultOfAttempt(user_value, invalid_set) {
 }
 
 
-function attemps_by_player(levelMax, totalRandom, losingNumbers) {
+function mainPhase(levelMax, totalRandom, losingNumbers) {
     //A function modelling the solving process by the player according to the game rules as described in README.md. Return an array, being array[0] = true if the player have completed all possible attempts, otherwise false; and array[1] being the total numbers of attempts
     var attempted = [] //creating array of attempt
     while (attempted.length < levelMax - totalRandom) { 
@@ -66,7 +79,7 @@ function attemps_by_player(levelMax, totalRandom, losingNumbers) {
 
         if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
             attempted.push(singleAttempt)
-            alert('You got it right! You score now is: is: ' + attempted.length + '. \nThe game continue:')
+            message_to_user('text-message', 'You got it right! You score now is: is: ' + attempted.length + '. \nThe game continue:')
         } else { 
             return [false, attempted.length]
         }
@@ -83,13 +96,12 @@ function gameplay(userChoise, totalRandom) {
 
     const losingNumbers = randomNumberSet(totalRandom, levelMax) 
 
-    var result = attemps_by_player(levelMax, totalRandom, losingNumbers)  //array with overall result
+    var result = mainPhase(levelMax, totalRandom, losingNumbers)  //array with overall result
     
     if (result[0]) {
-        console.log('You win!\nYou scored' + result[1] + ' points!')} 
-    else {
-        alert('Game over! Check your result in console!')             //user loses: print score
-        console.log('Your final score is: ' + result[1] + ' points.')
+        message_to_user('text-message', 'You win!\nYou scored' + result[1] + ' points!')
+    } else {
+        message_to_user('text-message', 'Game over!<br>Your final score is: ' + result[1] + ' points.')
     }
 }
 
@@ -149,3 +161,14 @@ button3.addEventListener('click',
         gameplay(3, 16)
     }
 ) 
+
+/*
+main_board.addEventListener('click', 
+    function(event) {
+        var text = ''
+        var x = event.offsetX;
+        var y = event.offsetY;
+        document.getElementById("text").innerHTML = x + '<br>' + y;
+    }
+)
+*/
