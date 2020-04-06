@@ -30,7 +30,7 @@ function randomNumberSet(n, max) {
     if (isNaN(n) || n < 1 || isNaN(max) || n < 1) {return -1}  // Validation
 
     while (randomNumbers.size < n) {
-        randomNumbers.add(Math.floor(Math.random() * 100) + 1)
+        randomNumbers.add(Math.floor(Math.random() * max) + 1)
     }
     
     return randomNumbers
@@ -71,7 +71,7 @@ function gameplay(userChoise) {
 
     //creating set of random numbers
     const losingNumbers = randomNumberSet(16, levelMax)
-    console.table(losingNumbers)
+    console.log(losingNumbers)
 
     while (true) { 
         var singleAttempt = promtpUser(levelMax, attempted) //ask user for number and validate number
@@ -92,3 +92,10 @@ function gameplay(userChoise) {
 
 
 // TEST
+var button3 = document.getElementById('button3')
+
+button3.addEventListener('click', 
+    function() {
+        gameplay(3)
+    }
+) 
