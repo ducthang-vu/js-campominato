@@ -59,7 +59,7 @@ function resultOfAttempt(user_value, invalid_set) {
 
 
 function attemps_by_player(levelMax, totalRandom, losingNumbers) {
-    //A function modelling the solving process by the player according to the game rules as described in README.md. Return an array, being array[0] true if the player have completed all possible attempts, otherwise false, and array[1] being the total numbers of attempts
+    //A function modelling the solving process by the player according to the game rules as described in README.md. Return an array, being array[0] = true if the player have completed all possible attempts, otherwise false; and array[1] being the total numbers of attempts
     var attempted = [] //creating array of attempt
     while (attempted.length < levelMax - totalRandom) { 
         var singleAttempt = promtpUser(levelMax, attempted) //ask user for number and validate number
@@ -78,25 +78,47 @@ function attemps_by_player(levelMax, totalRandom, losingNumbers) {
 
 function gameplay(userChoise, totalRandom) {
     var levelMax = difficultLevel(userChoise) //Chosing level of difficulty
-    const losingNumbers = randomNumberSet(totalRandom, levelMax) // creating set of random numbers //for testing: const losingNumbers = fakeset()
+
+    build_mainBoard('main-board', levelMax)
+
+    const losingNumbers = randomNumberSet(totalRandom, levelMax) 
+
     var result = attemps_by_player(levelMax, totalRandom, losingNumbers)  //array with overall result
     
-
     if (result[0]) {
         console.log('You win!\nYou scored' + result[1] + ' points!')} 
     else {
         alert('Game over! Check your result in console!')             //user loses: print score
-        console.log('You final score is: ' + result[1] + ' points.')
+        console.log('Your final score is: ' + result[1] + ' points.')
     }
 }
 
 
+
+
+/* UTILITIES FUNCTIONS */
 function fakeset() {
+    // A function creating a set of integers number from 1 to 49.
     var fakeset = new Set()
     for (let i = 0; i < 50; i++) {fakeset.add(i)}
     return fakeset
 }
 
+
+function build_mainBoard(HTML_idElement, total) {
+    //A function accepting a integer 'total' and a HTML ID element; and creating a number 'total' of button as innerHTML of the givern element. Each button contain as text a integer, in such a way that each button has a different number from 1 to 'total'.
+    var content = ''
+    for (i = 1; i <= total; i++) {
+        content += '<button id="button-board-' + i + '" class="button main-board-button" value="' + i + '"><span>' + i + '</span></button>'
+    }
+    document.getElementById(HTML_idElement).innerHTML = content
+}
+
+
+function message_to_user(HTML_idElement, content) {
+    //A function accepting a var and HTML element ID, and adding such var as content of said HTML element
+    document.getElementById(HTML_idElement).innerHTML = content
+}
 
 /***********************/
 /* --- MAIN SCRIPT --- */
@@ -104,6 +126,7 @@ function fakeset() {
 var button1 = document.getElementById('button1')
 var button2 = document.getElementById('button2')
 var button3 = document.getElementById('button3')
+
 
 
 /* EVENTS */
@@ -119,7 +142,6 @@ button2.addEventListener('click',
         gameplay(2, 16)
     }
 ) 
-
 
 
 button3.addEventListener('click', 
