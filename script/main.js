@@ -101,7 +101,26 @@ function fakeset() {
 /***********************/
 /* --- MAIN SCRIPT --- */
 /***********************/
+var button1 = document.getElementById('button1')
+var button2 = document.getElementById('button2')
 var button3 = document.getElementById('button3')
+
+
+/* EVENTS */
+button1.addEventListener('click', 
+    function() {
+        gameplay(1, 16)
+    }
+) 
+
+
+button2.addEventListener('click', 
+    function() {
+        gameplay(2, 16)
+    }
+) 
+
+
 
 button3.addEventListener('click', 
     function() {
