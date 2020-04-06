@@ -9,7 +9,7 @@ console.log('main.js is working')
 /*********************/
 
 function difficultLevel(userChoise) {
-    // A fanction accepting a integer "userChoise" and returning a integer according to the game rules as described in README.md; return -1 if parameter is invalid.
+    // A function accepting a integer "userChoise" and returning a integer according to the game rules as described in README.md; return -1 if parameter is invalid.
     switch (userChoise) {
         case 1:
             return 100
@@ -73,7 +73,7 @@ function gameplay(userChoise) {
     const losingNumbers = randomNumberSet(16, levelMax)
     console.log(losingNumbers)
 
-    while (true) { 
+    while (currentScore < (levelMax - 16)) { 
         var singleAttempt = promtpUser(levelMax, attempted) //ask user for number and validate number
 
         if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
@@ -87,6 +87,7 @@ function gameplay(userChoise) {
             break
         }
     }
+    console.log('You win!')
 }
 
 
