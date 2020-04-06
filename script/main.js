@@ -48,6 +48,7 @@ function promtpUser(max, invalid_array) {
 }
 
 
+// TODO -- VALIDATION
 function resultOfAttempt(user_value, invalid_set) {
     //A function accepting a number 'user_value' and a set 'invalid_set'; and returing true if 'user_value' is not an element of the set.
     if (invalid_set.has(user_value)) {
@@ -57,31 +58,37 @@ function resultOfAttempt(user_value, invalid_set) {
 }
 
 
+
+
+
 function gameplay(userChoise) {
     //creating scoreCounter
     var currentScore = 0
+    var attempted = [] //creating array of attempt
 
     //Chosing level of difficulty
     var levelMax = difficultLevel(userChoise)
 
     //creating set of random numbers
     const losingNumbers = randomNumberSet(16, levelMax)
+    console.table(losingNumbers)
 
-    //creating array of attempt
-    var attempted = []
+    while (true) { 
+        var singleAttempt = promtpUser(levelMax, attempted) //ask user for number and validate number
 
-    //ask user for number and validate number
-    var singleAttempt = promtpUser(levelMax, attempted)
-
-
-    //if number is in set
-    var resultAttempt = resultOfAttempt(singleAttempt, losingNumbers)
-
+        if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
+            ++currentScore
+            attempted.push(singleAttempt)
+            alert('You got it right! You score now is: is: ' + currentScore + '. \nThe game continue:')
+        } else { 
+            //user loses: print score
+            alert('Game over! Check your result in console!')
+            console.log('You final score is: ' + currentScore + '.')
+            break
+        }
     }
-
-        //user loses
-            //print score
-        //game continue
-            //updated attempted array
-            //update score
 }
+
+
+
+// TEST
