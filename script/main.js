@@ -61,19 +61,21 @@ function resultOfAttempt(user_value, invalid_set) {
 
 
 
-function gameplay(userChoise) {
+function gameplay(userChoise, totalRandom) {
     //creating scoreCounter
     var currentScore = 0
     var attempted = [] //creating array of attempt
+    var result = true
 
     //Chosing level of difficulty
     var levelMax = difficultLevel(userChoise)
 
     //creating set of random numbers
-    const losingNumbers = randomNumberSet(16, levelMax)
+    const losingNumbers = randomNumberSet(totalRandom, levelMax) // for testing: const losingNumbers = fakeset()
+    
     console.log(losingNumbers)
 
-    while (currentScore < (levelMax - 16)) { 
+    while (currentScore < levelMax - totalRandom) { 
         var singleAttempt = promtpUser(levelMax, attempted) //ask user for number and validate number
 
         if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
@@ -84,12 +86,20 @@ function gameplay(userChoise) {
             //user loses: print score
             alert('Game over! Check your result in console!')
             console.log('You final score is: ' + currentScore + '.')
+            result = false
             break
         }
     }
-    console.log('You win!')
+    
+    if (result) {console.log('you win!')}
 }
 
+
+function fakeset() {
+    var fakeset = new Set()
+    for (let i = 0; i < 50; i++) {fakeset.add(i)}
+    return fakeset
+}
 
 
 /***********************/
@@ -99,6 +109,6 @@ var button3 = document.getElementById('button3')
 
 button3.addEventListener('click', 
     function() {
-        gameplay(3)
+        gameplay(3, 16)
     }
 ) 
