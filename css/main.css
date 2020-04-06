@@ -87,11 +87,10 @@ li {
 /* main: MAIN-TABLE */
 .main-board {
     margin-top:25px;
-    width: 800px;
+    width: 400px;
 }
 
 .main-board-button {
-    
     padding: 0;
     flex-basis: 40px;
     height: 40px;

@@ -55,7 +55,7 @@ function getting_userValue(max, invalid_array, HTML_idElement) {
                     function(event) {
                         column = Math.ceil(event.offsetX / 40)
                         row = Math.ceil(event.offsetY / 40)
-                        return 20 * (row - 1) + column
+                        return 10 * (row - 1) + column
                     }
             )
 }
