@@ -58,40 +58,36 @@ function resultOfAttempt(user_value, invalid_set) {
 }
 
 
+function attemps_by_player(levelMax, totalRandom, losingNumbers) {
+    //A function modelling the solving process by the player according to the game rules as described in README.md. Return an array, being array[0] true if the player have completed all possible attempts, otherwise false, and array[1] being the total numbers of attempts
+    var attempted = [] //creating array of attempt
+    while (attempted.length < levelMax - totalRandom) { 
+        var singleAttempt = promtpUser(levelMax, attempted) //ask user for number and validate number
+
+        if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
+            attempted.push(singleAttempt)
+            alert('You got it right! You score now is: is: ' + attempted.length + '. \nThe game continue:')
+        } else { 
+            return [false, attempted.length]
+        }
+    }
+    return [true, attempted.length]
+}
 
 
 
 function gameplay(userChoise, totalRandom) {
-    //creating scoreCounter
-    var currentScore = 0
-    var attempted = [] //creating array of attempt
-    var result = true
-
-    //Chosing level of difficulty
-    var levelMax = difficultLevel(userChoise)
-
-    //creating set of random numbers
-    const losingNumbers = randomNumberSet(totalRandom, levelMax) // for testing: const losingNumbers = fakeset()
+    var levelMax = difficultLevel(userChoise) //Chosing level of difficulty
+    const losingNumbers = randomNumberSet(totalRandom, levelMax) // creating set of random numbers //for testing: const losingNumbers = fakeset()
+    var result = attemps_by_player(levelMax, totalRandom, losingNumbers)  //array with overall result
     
-    console.log(losingNumbers)
 
-    while (currentScore < levelMax - totalRandom) { 
-        var singleAttempt = promtpUser(levelMax, attempted) //ask user for number and validate number
-
-        if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
-            ++currentScore
-            attempted.push(singleAttempt)
-            alert('You got it right! You score now is: is: ' + currentScore + '. \nThe game continue:')
-        } else { 
-            //user loses: print score
-            alert('Game over! Check your result in console!')
-            console.log('You final score is: ' + currentScore + '.')
-            result = false
-            break
-        }
+    if (result[0]) {
+        console.log('You win!\nYou scored' + result[1] + ' points!')} 
+    else {
+        alert('Game over! Check your result in console!')             //user loses: print score
+        console.log('You final score is: ' + result[1] + ' points.')
     }
-    
-    if (result) {console.log('you win!')}
 }
 
 
