@@ -91,7 +91,9 @@ function gameplay(userChoise) {
 
 
 
-// TEST
+/***********************/
+/* --- MAIN SCRIPT --- */
+/***********************/
 var button3 = document.getElementById('button3')
 
 button3.addEventListener('click', 
