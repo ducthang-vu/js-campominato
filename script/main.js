@@ -48,16 +48,23 @@ function promtpUser(max, invalid_array) {
 }
 
 
-function getting_userValue(max, invalid_array, HTML_idElement) {
-    //A function accepting an integer 'max', an array 'invalid_array' and a 'HTML_idElement'; and asking, via the 'message_to_user' function, the user to enter a number 'user_value', by using clicking on the the HTML element. 
+function getting_userValue(HTML_idElement) {
+    //A function accepting a 'HTML_idElement'; and asking, via the 'message_to_user' function, the user to enter a number 'user_value', by using clicking on the the HTML element. 
+    var user_value
+
     message_to_user('text-message', 'Choose a number by clicking on the board.') //VALIDATION NOT NEEDED
-    return document.getElementById(HTML_idElement).addEventListener('click', 
-                    function(event) {
-                        column = Math.ceil(event.offsetX / 40)
-                        row = Math.ceil(event.offsetY / 40)
-                        return 10 * (row - 1) + column
-                    }
-            )
+   
+    do {
+        user_value = document.getElementById(HTML_idElement).addEventListener('click', 
+                        function(event) {
+                            column = Math.ceil(event.offsetX / 40)
+                            row = Math.ceil(event.offsetY / 40)
+                            return 10 * (row - 1) + column
+                        }
+                    )
+    } while (invalid_array.includes(user_value))
+      
+    return user_value
 }
 
 
