@@ -8,6 +8,21 @@ console.log('main.js is working')
 /* --- FUNCTIONS --- */
 /*********************/
 
+function difficultLevel(userChoise) {
+    // A fanction accepting a integer "userChoise" and returning a integer according to the game rules as described in README.md; return -1 if parameter is invalid.
+    switch (userChoise) {
+        case 1:
+            return 100
+        case 2:
+            return 80
+        case 3: 
+            return 50
+        default:
+            return -1
+    }
+}
+
+
 function randomNumberSet(n, max) {
     //A function accepting two integer "n" and "max", and returning a set of n different ingeters from 1 to max included. Return -1 if either parameter is not number of smaller than 1.
     var randomNumbers = new Set()
@@ -22,26 +37,27 @@ function randomNumberSet(n, max) {
 }
 
 
-function difficultLevel() {
-
-}
 
 
 
-function game() {
-    //creating scoreCounter, difficult level
+
+function gameplay(userChoise) {
+    //creating scoreCounter
     var currentScore = 0
-    var level = 1;
+
     //Chosing level of difficulty
+    var levelMax = difficultLevel(userChoise)
 
     //creating set of random numbers
-    randomNumberSet(16, max)
+    const losingNumbers = randomNumberSet(16, levelMax)
 
     //creating array of attempt
+    var attempted = []
 
     //ask user for number
+    var singleAttempt = parseInt(prompt('Enter a number:'))
         //validate the number
-
+    
     //if number is in set
         //user loses
         //game continue
