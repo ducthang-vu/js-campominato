@@ -1,0 +1,32 @@
+
+function getting_userValue(HTML_idElement, invalid_array) {
+    //A function accepting a 'HTML_idElement'; and asking, via the 'message_to_user' function, the user to enter a number 'user_value', by using clicking on the the HTML element. 
+    var user_value
+    const function_board = function(event) {
+        console.log(event.offsetX )
+        console.log(event.offsetY )
+        column = Math.ceil(event.offsetX / 40)
+        row = Math.ceil(event.offsetY / 40)
+        user_value = 10 * (row - 1) + column
+        console.log(user_value)
+        document.getElementById(HTML_idElement).removeEventListener('click', function_board)
+    }
+
+    message_to_user('text-message', 'Choose a number by clicking on the board.') //VALIDATION NOT NEEDED
+
+    do {
+    document.getElementById(HTML_idElement).addEventListener('click', function_board)
+                    
+    } while (invalid_array.includes(user_value))
+
+    /*
+    return document.getElementById(HTML_idElement).addEventListener('click', 
+                    function(event) {
+                        console.log(event.offsetX )
+                        console.log(event.offsetY )
+                        column = Math.ceil(event.offsetX / 40)
+                        row = Math.ceil(event.offsetY / 40)
+                        user_value = 10 * (row - 1) + column
+                        console.log(user_value)
+                    }
+                )*/

@@ -47,6 +47,27 @@ function promtpUser(max, invalid_array) {
     return user_value
 }
 
+/*
+function getting_userValue(HTML_idElement) {
+    //A function accepting a 'HTML_idElement'; and asking, via the 'message_to_user' function, the user to enter a number 'user_value', by using clicking on the the HTML element. 
+    var user_value = null
+
+    message_to_user('text-message', 'Choose a number by clicking on the board.') //VALIDATION NOT NEEDED
+
+    document.getElementById(HTML_idElement).addEventListener('click', 
+                    function(event) {
+                        console.log(event.offsetX )
+                        console.log(event.offsetY )
+                        column = Math.ceil(event.offsetX / 40)
+                        row = Math.ceil(event.offsetY / 40)
+                        user_value = 10 * (row - 1) + column
+                        console.log(user_value)
+                    }
+                )
+    if (!invalid_array.includes(user_value) && user_value != null) {return user_value}
+}*/
+
+
 // TODO -- VALIDATION
 function resultOfAttempt(user_value, invalid_set) {
     //A function accepting a number 'user_value' and a set 'invalid_set'; and returing true if 'user_value' is not an element of the set.
@@ -66,13 +87,39 @@ function mainPhase(levelMax, totalRandom, losingNumbers) {
 
         if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
             attempted.push(singleAttempt)
-            alert('You got it right! You score now is: is: ' + attempted.length + '. \nThe game continue.')
+            message_to_user('text-message', 'You got it right! You score now is: is: ' + attempted.length + '. \nThe game continue:')
         } else { 
             return [false, attempted.length]
         }
     }
     return [true, attempted.length]
 }
+/*
+function mainPhase(levelMax, totalRandom, losingNumbers, HTML_idElement) {
+    //TODO
+    var attempted = [] //creating array of attempt
+    
+
+    document.getElementById(HTML_idElement).addEventListener('click', 
+                    function(event) {
+                        var singleAttempt
+                        column = Math.ceil(event.offsetX / 40)
+                        row = Math.ceil(event.offsetY / 40)
+                        singleAttempt = 10 * (row - 1) + column
+                        console.log(singleAttempt)
+                        if (invalid_array.includes(user_value)) {
+                            if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
+                                attempted.push(singleAttempt)
+                                message_to_user('text-message', 'You got it right! You score now is: is: ' + attempted.length + '. \nThe game continue:')
+                            } else { 
+                                return [false, attempted.length]
+                            }
+                        } //If number is already attempted not neeed any message since button should be deactived
+                    }
+                )
+    
+    return [true, attempted.length]  
+}*/
               
 
 function gameplay(userChoise, totalRandom) {
@@ -147,3 +194,14 @@ button3.addEventListener('click',
         gameplay(3, 16)
     }
 ) 
+
+/*
+main_board.addEventListener('click', 
+    function(event) {
+        var text = ''
+        var x = event.offsetX;
+        var y = event.offsetY;
+        document.getElementById("text").innerHTML = x + '<br>' + y;
+    }
+)
+*/
