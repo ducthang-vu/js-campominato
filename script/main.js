@@ -8,6 +8,35 @@ console.log('main.js is working')
 /* --- FUNCTIONS --- */
 /*********************/
 
+/* UTILITIES FUNCTIONS */
+function build_mainBoard(HTML_idElement, total) {
+    //A function accepting a integer 'total' and a HTML ID element; and creating a number 'total' of button as innerHTML of the givern element. Each button contain as text a integer, in such a way that each button has a different number from 1 to 'total'.
+    var content = ''
+    for (i = 1; i <= total; i++) {
+        content += '<button id="button-board-' + i + '" class="button main-board-button" value="' + i + '"><span>' + i + '</span></button>'
+    }
+    document.getElementById(HTML_idElement).innerHTML = content
+}
+
+
+function message_to_user(HTML_idElement, content) {
+    //A function accepting a var and HTML element ID, and adding such var as content of said HTML element
+    document.getElementById(HTML_idElement).innerHTML = content
+}
+
+
+function radioInput__checked_value(name) {
+    // A function accepting a name of HTML input elements of type "radio", and returning the value of the checked option.
+    var array = document.getElementsByName(name)
+    for (i = 0; i < array.length; i++) {
+        if (array[i].checked) {
+            return array[i].value
+        }
+    }
+}
+
+
+/* GAME SECONDARY FUNCTIONS */
 function difficultLevel(userChoise) {
     // A function accepting an integer "userChoise" and returning an integer according to the game rules as described in README.md; return -1 if parameter is invalid.
     switch (userChoise) {
@@ -46,38 +75,7 @@ function resultOfAttempt(user_value, invalid_set) {
 }
     
 
-/* UTILITIES FUNCTIONS */
-function build_mainBoard(HTML_idElement, total) {
-    //A function accepting a integer 'total' and a HTML ID element; and creating a number 'total' of button as innerHTML of the givern element. Each button contain as text a integer, in such a way that each button has a different number from 1 to 'total'.
-    var content = ''
-    for (i = 1; i <= total; i++) {
-        content += '<button id="button-board-' + i + '" class="button main-board-button" value="' + i + '"><span>' + i + '</span></button>'
-    }
-    document.getElementById(HTML_idElement).innerHTML = content
-}
-
-
-function message_to_user(HTML_idElement, content) {
-    //A function accepting a var and HTML element ID, and adding such var as content of said HTML element
-    document.getElementById(HTML_idElement).innerHTML = content
-}
-
-
-function radioInput__checked_value(name) {
-    // A function accepting a name of HTML input elements of type "radio", and returning the value of the checked option.
-    var array = document.getElementsByName(name)
-    for (i = 0; i < array.length; i++) {
-        if (array[i].checked) {
-            return array[i].value
-        }
-    }
-}
-
-
-/***********************/
-/* --- MAIN SCRIPT --- */
-/***********************/
-/* Function */
+/* GAME MAIN FUNCTIONS */
 function opening_button() {
     level = parseInt(radioInput__checked_value('level')) //Chosenlevel of difficulty by user
     levelMax = difficultLevel(level)
@@ -136,8 +134,15 @@ function endgame(result, score) {
 }
 
 
-/*GLOBAL VARIABLES*/
 
+/***********************/
+/*                     */
+/* --- MAIN SCRIPT --- */
+/*                     */
+/***********************/
+
+
+/*GLOBAL VARIABLES*/
 var play_button = document.getElementById('play-button')
 const totalRandom = 16
 var level
@@ -146,8 +151,8 @@ var losingNumbers
 var mainBoard_buttons
 var attempted = []
 
-/* GAMEPLAY */
 
+/* GAMEPLAY */
 play_button.addEventListener('click', opening_button) 
 
 
