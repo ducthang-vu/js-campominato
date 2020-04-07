@@ -79,12 +79,12 @@ function resultOfAttempt(user_value, invalid_set) {
     
 
 /* GAME MAIN FUNCTIONS */
-function opening_button() {
-    level = parseInt(radioInput__checked_value('level')) //Chosenlevel of difficulty by user
+function startGame() {
+    level = parseInt(radioInput__checked_value('level')) //Chosen level of difficulty by user
     levelMax = difficultLevel(level)
     losingNumbers = randomNumberSet(totalRandom, levelMax) 
 
-    // resettting variables
+    // reset game
     message_to_user(score_box, 0) 
     message_to_user('level-text', level)
     attempted = [] 
@@ -110,9 +110,9 @@ function mainPhase() {
     document.getElementById('button-board-' + this.value).disabled = true  // disabling button
     document.getElementById('button-board-' + this.value).classList += ' attempted'
 
-    if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
+    if (resultOfAttempt(singleAttempt, losingNumbers)) {    //check if number is in set
         attempted.push(singleAttempt)
-        if (attempted.length < levelMax - totalRandom) {
+        if (attempted.length < levelMax - totalRandom) {    // check if the game can continue
             message_to_user(score_box, attempted.length)
             message_to_user(text_box, 'You got it right!<br><br>The game continue.')
         }
@@ -120,13 +120,13 @@ function mainPhase() {
             endgame(true, attempted.length) // player wins
         }
     } else { 
-        endgame(false, attempted.length)
+        endgame(false, attempted.length)  // player loses
     }
 }
 
 
 function endgame(result, score) {
-    for (let i = 0; i < mainBoard_buttons.length; i++) {
+    for (let i = 0; i < mainBoard_buttons.length; i++) {  // disabling all buttons
         mainBoard_buttons[i].disabled = true;
     }
 
@@ -161,6 +161,4 @@ var attempted = []
 
 
 /* GAMEPLAY */
-play_button.addEventListener('click', opening_button) 
-
-
+play_button.addEventListener('click', startGame()) 
