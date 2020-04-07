@@ -70,7 +70,7 @@ function randomNumberSet(n, max) {
 
 
 function resultOfAttempt(user_value, invalid_set) {
-    //A function accepting a variable 'user_value' and a set 'invalid_set'; and returing true if 'user_value' is not an element of the set.
+    //A function accepting a variable 'user_value' and a set 'invalid_set'; and returning true if 'user_value' is not an element of the set.
     if (invalid_set.has(user_value)) {
         return false    //game should end
     }
