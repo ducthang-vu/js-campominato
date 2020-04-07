@@ -9,16 +9,40 @@
 </head>
 <body class="black white-color">
     <section class="level-wrapper">
-        <button id="button1">Start game - Level 1</button>
-        <button id="button2">Start game - Level 2</button>
-        <button id="button3">Start game - Level 3</button>
+        <div class=input-box>
+            <div class="input-box-inner">
+                <input id="level_1" name="level" type="radio" value="1" checked/>
+                <label for="level_1">Level 1</label>
+            </div>
+
+            <div class="input-box-inner">
+                <input id="level_2"  name="level" type="radio" value="2" />
+                <label for="level_2">Level 2</label>
+            </div>   
+
+            <div class="input-box-inner">
+                <input id="level_3"  name="level" type="radio" value="3" />
+                <label for="level_3">Level 3</label>
+            </div>   
+        </div>
+
+        <div class="text-center">
+            <button id="play-button" class="button block green white-color">
+                Play
+            </button>
+        </div>
     </section>
 
 
     <section class="message-wrapper central">
-        <div class="score-box">
-            <span class=score-message>0</span>
+        <div class="level-box">
+            Level: <span id="level-text">0</span>
         </div>
+
+        <div class="score-box">
+            Score: <span id=score-message>0</span>
+        </div>
+        
         <div class="text-box">
             <span id="text-message">Pres Start game button to start the game!</span>
         </div>
@@ -34,7 +58,6 @@
             02/04/2020
         </p>
     </footer>
-
     
     <!-- SCRIPT -->
     <script src="script/main.js"></script>
