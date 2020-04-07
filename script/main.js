@@ -80,6 +80,7 @@ function resultOfAttempt(user_value, invalid_set) {
 
 /* GAME MAIN FUNCTIONS */
 function startGame() {
+    // A function for setting the game according to the rules and the level of difficulty. In this phase the user does not give any input.
     level = parseInt(radioInput__checked_value('level')) //Chosen level of difficulty by user
     levelMax = difficultLevel(level)
     losingNumbers = randomNumberSet(totalRandom, levelMax) 
@@ -101,6 +102,7 @@ function startGame() {
     
     message_to_user(text_box, 'Choose a number!')
 
+    // Enabling the buttons
     for (let i = 0; i < mainBoard_buttons.length; i++) {
         mainBoard_buttons[i].addEventListener('click', mainPhase);
     }
@@ -108,6 +110,7 @@ function startGame() {
 
 
 function mainPhase() {
+    // A function modelling the interaction with the user.
     singleAttempt = parseInt(this.value)    // value from user
     document.getElementById('button-board-' + this.value).disabled = true  // disabling button
     document.getElementById('button-board-' + this.value).classList += ' attempted'     // adding HTML class to button
@@ -128,6 +131,7 @@ function mainPhase() {
 
 
 function endgame(result, score) {
+    // A function ending the game, by disabling all buttons, and by declaring the result to the user.
     for (let i = 0; i < mainBoard_buttons.length; i++) {  // disabling all buttons
         mainBoard_buttons[i].disabled = true;
     }
