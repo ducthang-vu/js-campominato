@@ -4,9 +4,12 @@
 
 console.log('main.js is working')
 
-/*********************/
-/* --- FUNCTIONS --- */
-/*********************/
+
+/***********************/
+/*                     */
+/* ---  FUNCTIONS  --- */
+/*                     */
+/***********************/
 
 /* UTILITIES FUNCTIONS */
 function build_mainBoard(HTML_idElement, total) {
@@ -120,6 +123,7 @@ function mainPhase() {
         endgame(false, attempted.length)
     }
 }
+
 
 function endgame(result, score) {
     for (let i = 0; i < mainBoard_buttons.length; i++) {
