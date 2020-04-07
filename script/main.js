@@ -87,6 +87,8 @@ function startGame() {
 
     // reset game
     attempted = []
+    message_to_user('level-text', level)
+    message_to_user(score_box, attempted.length)    // Score shown to user reset to 0
 
     // Building the board with buttons, and creating a collection thereof
     build_mainBoard('main-board', levelMax) 
@@ -98,14 +100,12 @@ function startGame() {
             document.getElementById('button-board-' + (i + 1)).classList += ' losing-numbers'}
     }         
 
-    message_to_user('level-text', level)
-    message_to_user(score_box, attempted.length) 
-    message_to_user(text_box, 'Choose a number!')
-
     // Enabling the buttons
     for (let i = 0; i < mainBoard_buttons.length; i++) {
         mainBoard_buttons[i].addEventListener('click', mainPhase);  // The game go to the next phase each time the button is pressed
     }
+
+    message_to_user(text_box, 'Choose a number!')
 }
 
 
