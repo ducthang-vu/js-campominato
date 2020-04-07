@@ -155,8 +155,8 @@ function endgame(result, score) {
 
 /*GLOBAL VARIABLES*/
 const play_button = document.getElementById('play-button')
-const text_box = document.getElementById('text-message')
-const score_box = document.getElementById('score-message')
+const text_box = 'text-message'
+var score_box = 'score-message'
 const totalRandom = 16
 
 var level
@@ -167,4 +167,4 @@ var attempted = []
 
 
 /* GAMEPLAY */
-play_button.addEventListener('click', startGame()) 
+play_button.addEventListener('click', startGame) 
