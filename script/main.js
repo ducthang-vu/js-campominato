@@ -119,7 +119,7 @@ function mainPhase() {
         attempted.push(singleAttempt)
         if (attempted.length < levelMax - totalRandom) {    // check if the game can continue
             message_to_user(score_box, attempted.length)
-            message_to_user(text_box, 'You got it right!<br><br>The game continue.')
+            message_to_user(text_box, 'You got it right!<br><br>The game continues.')
         }
         else {
             endgame(true, attempted.length) // player wins
