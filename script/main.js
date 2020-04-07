@@ -82,7 +82,7 @@ function opening_button() {
     losingNumbers = randomNumberSet(totalRandom, levelMax) 
 
     // resettting variables
-    message_to_user('score-message', 0) 
+    message_to_user(score_box, 0) 
     message_to_user('level-text', level)
     attempted = [] 
 
@@ -93,7 +93,7 @@ function opening_button() {
             document.getElementById('button-board-' + (i + 1)).classList += ' losing-numbers'}
     }                                        
     
-    message_to_user('text-message', 'Choose a number!')
+    message_to_user(text_box, 'Choose a number!')
 
     for (let i = 0; i < mainBoard_buttons.length; i++) {
         mainBoard_buttons[i].addEventListener('click', mainPhase);
@@ -110,11 +110,11 @@ function mainPhase() {
     if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
         attempted.push(singleAttempt)
         if (attempted.length < levelMax - totalRandom) {
-            message_to_user('score-message', attempted.length)
-            message_to_user('text-message', 'You got it right!<br><br>The game continue.')
+            message_to_user(score_box, attempted.length)
+            message_to_user(text_box, 'You got it right!<br><br>The game continue.')
         }
         else {
-            endgame(true, attempted.length) // player win
+            endgame(true, attempted.length) // player wins
         }
     } else { 
         endgame(false, attempted.length)
@@ -127,9 +127,9 @@ function endgame(result, score) {
     }
 
     if (result) {
-        message_to_user('text-message', 'You win!<br><br>You scored' + score + ' points!')
+        message_to_user(text_box, 'You win!<br><br>You scored' + score + ' points!')
     } else {
-        message_to_user('text-message', 'Game over!<br><br>Your final score is: ' + score + ' points.')
+        message_to_user(text_box, 'Game over!<br><br>Your final score is: ' + score + ' points.')
     }
 }
 
@@ -144,6 +144,9 @@ function endgame(result, score) {
 
 /*GLOBAL VARIABLES*/
 var play_button = document.getElementById('play-button')
+var text_box = document.getElementById('text-message')
+var score_box = document.getElementById('score-message')
+
 const totalRandom = 16
 var level
 var levelMax 
