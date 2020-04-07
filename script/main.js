@@ -44,35 +44,9 @@ function resultOfAttempt(user_value, invalid_set) {
     }
     return true //game continue
 }
-
-
-function mainPhase(levelMax, totalRandom, losingNumbers) {
-    //A function modelling the solving process by the player according to the game rules as described in README.md. Return an array, being array[0] = true if the player have completed all possible attempts, otherwise false; and array[1] being the total numbers of attempts
-    var attempted = [] //creating array of attempt
-    while (attempted.length < levelMax - totalRandom) { 
-        var singleAttempt = promtpUser(levelMax, attempted) //ask user for number and validate number
-        //var singleAttempt = getting_userValue('main-board', attempted)
-
-        if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
-            attempted.push(singleAttempt)
-            alert('You got it right! You score now is: is: ' + attempted.length + '. \nThe game continue.')
-        } else { 
-            return [false, attempted.length]
-        }
-    }
-    return [true, attempted.length]
-}
-              
+    
 
 /* UTILITIES FUNCTIONS */
-function fakeset() {
-    // A function creating a set of integers number from 1 to 49.
-    var fakeset = new Set()
-    for (let i = 0; i < 50; i++) {fakeset.add(i)}
-    return fakeset
-}
-
-
 function build_mainBoard(HTML_idElement, total) {
     //A function accepting a integer 'total' and a HTML ID element; and creating a number 'total' of button as innerHTML of the givern element. Each button contain as text a integer, in such a way that each button has a different number from 1 to 'total'.
     var content = ''
