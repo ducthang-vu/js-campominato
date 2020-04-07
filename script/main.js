@@ -56,7 +56,7 @@ function difficultLevel(userChoise) {
 
 
 function randomNumberSet(n, max) {
-    //A function accepting two integer "n" and "max", and returning a set of n different ingeters from 1 to max, included. Return -1 if either parameter is not number of smaller than 1.
+    //A function accepting two integer "n" and "max", and returning a set of n different ingeters from 1 to max, included. Return -1 if either parameter is not number or smaller than 1.
     var randomNumbers = new Set()
 
     if (isNaN(n) || n < 1 || isNaN(max) || n < 1) {return -1}  // Validation
@@ -104,7 +104,7 @@ function startGame() {
 
     // Enabling the buttons
     for (let i = 0; i < mainBoard_buttons.length; i++) {
-        mainBoard_buttons[i].addEventListener('click', mainPhase);
+        mainBoard_buttons[i].addEventListener('click', mainPhase);  // The game go to the next phase each time the button is pressed
     }
 }
 
