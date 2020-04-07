@@ -90,7 +90,7 @@ function startGame() {
     message_to_user('level-text', level)
     attempted = [] 
 
-    // Building the board with buttons
+    // Building the board with buttons, and creating a collection thereof
     build_mainBoard('main-board', levelMax) 
     mainBoard_buttons = document.getElementsByClassName('main-board-button')
 
