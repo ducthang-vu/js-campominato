@@ -93,7 +93,7 @@ function startGame() {
     build_mainBoard('main-board', levelMax) 
     mainBoard_buttons = document.getElementsByClassName('main-board-button')
 
-    // Adding class to losing buttons
+    // Adding HTML class to losing buttons
     for (let i = 0; i < mainBoard_buttons.length; i++) { 
         if (losingNumbers.has(i + 1)) {
             document.getElementById('button-board-' + (i + 1)).classList += ' losing-numbers'}
@@ -110,7 +110,7 @@ function startGame() {
 function mainPhase() {
     singleAttempt = parseInt(this.value)    // value from user
     document.getElementById('button-board-' + this.value).disabled = true  // disabling button
-    document.getElementById('button-board-' + this.value).classList += ' attempted'
+    document.getElementById('button-board-' + this.value).classList += ' attempted'     // adding HTML class to button
 
     if (resultOfAttempt(singleAttempt, losingNumbers)) {    //check if number is in set
         attempted.push(singleAttempt)
