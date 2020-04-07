@@ -135,6 +135,7 @@ function endgame(result, score) {
 
 
 
+
 /***********************/
 /*                     */
 /* --- MAIN SCRIPT --- */
@@ -143,11 +144,11 @@ function endgame(result, score) {
 
 
 /*GLOBAL VARIABLES*/
-var play_button = document.getElementById('play-button')
-var text_box = document.getElementById('text-message')
-var score_box = document.getElementById('score-message')
-
+const play_button = document.getElementById('play-button')
+const text_box = document.getElementById('text-message')
+const score_box = document.getElementById('score-message')
 const totalRandom = 16
+
 var level
 var levelMax 
 var losingNumbers
