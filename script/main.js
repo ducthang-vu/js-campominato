@@ -156,7 +156,7 @@ function endgame(result, score) {
 /*GLOBAL VARIABLES*/
 const play_button = document.getElementById('play-button')
 const text_box = 'text-message'
-var score_box = 'score-message'
+const score_box = 'score-message'
 const totalRandom = 16
 
 var level
