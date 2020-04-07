@@ -107,7 +107,6 @@ function startGame() {
 }
 
 
-
 function mainPhase() {
     singleAttempt = parseInt(this.value)    // value from user
     document.getElementById('button-board-' + this.value).disabled = true  // disabling button
