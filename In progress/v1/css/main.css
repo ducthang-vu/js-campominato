@@ -34,9 +34,8 @@ li {
 }
 
 .container {
-    padding: 25px;
+    padding: 10px;
     border: 2px solid #fff;
-    height: 454px;
 }
 
 .flex-nw {
@@ -54,10 +53,6 @@ li {
 
 .central {
     margin: auto;
-}
-
-.text-right {
-    text-align: right;
 }
 
 .green {
@@ -84,58 +79,15 @@ li {
     color: #fff;
 }
 
-/* APP */
-.app {
-    max-width: 1000px;
-}
-
-/* main: MAIN MENU */
-.main-menu {
-    padding: 5px 20px;
-    justify-content: flex-end;
-}
-
-.main-menu * {
-    flex-basis: calc(100% / 3)
-}
-
-/* main: MESSAGE-WRAPPER */
+/* main: message-wrapper */
 .message-wrapper {
-    flex-basis: 25%;
-    margin: 0 auto
-}
-
-.message-wrapper header {
-    margin-bottom: 25px;
-}
-
-.message-wrapper .row {
-    justify-content: center;
-}
-
-.output-wrapper {
-    margin: 10px;
-}
-
-.output-box {
-    width: 50px;
-    height: 50px;
-    border: 2px solid #fff;
-    font-size: 200%;
-    font-weight: 800;
-    justify-content: center;
-    align-items: center;
-}
-
-.text-box {
-    margin: 25px 45px;
+    background: red;
 }
 
 /* main: MAIN-TABLE */
 .main-board {
-    margin: 0 auto;
+    margin-top:25px;
     width: 400px;
-    align-content: start;
 }
 
 .main-board-button {
@@ -143,23 +95,8 @@ li {
     flex-basis: 40px;
     height: 40px;
     font-size: 75%;
-    background: gray;
 }
 
-.main-board-button.attempted:disabled {
-    background: green;
-    color: #fff
-}
-
-.main-board-button:not(.attempted.losing-numbers):disabled {
-    background: blue;
-    color: #fff;
-}
-
-.main-board-button.losing-numbers:disabled {
-    background: red;
-    color: #fff;
-}
 
 
 /* FOOTER  */

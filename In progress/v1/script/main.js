@@ -37,8 +37,20 @@ function randomNumberSet(n, max) {
 }
 
 
+function promtpUser(max, invalid_array) {
+    //A function accepting an integer 'max' and an array 'invalid_array', and prompting user to enter a number 'user_value', as many times as necessary until 1 < 'user_value' <= max and != from any item of 'invalid_array'. Returns the 'user_value'.
+    var user_value = parseInt(prompt('Enter a number between 1 and ' + max))
+    while (isNaN(user_value) || user_value < 1 || user_value > max || invalid_array.includes(user_value)) {
+        user_value = parseInt(prompt('Your number is not valid, enter a diferrent number between 1 and ' + max + ': '))
+    }
+
+    return user_value
+}
+
+
+// TODO -- VALIDATION
 function resultOfAttempt(user_value, invalid_set) {
-    //A function accepting a variable 'user_value' and a set 'invalid_set'; and returing true if 'user_value' is not an element of the set.
+    //A function accepting a number 'user_value' and a set 'invalid_set'; and returing true if 'user_value' is not an element of the set.
     if (invalid_set.has(user_value)) {
         return false    //game over
     }
@@ -64,6 +76,25 @@ function mainPhase(levelMax, totalRandom, losingNumbers) {
 }
               
 
+function gameplay(userChoise, totalRandom) {
+    var levelMax = difficultLevel(userChoise) //Chosing level of difficulty
+
+    build_mainBoard('main-board', levelMax)
+
+    const losingNumbers = randomNumberSet(totalRandom, levelMax) 
+
+    var result = mainPhase(levelMax, totalRandom, losingNumbers)  //array with overall result
+    
+    if (result[0]) {
+        message_to_user('text-message', 'You win!\nYou scored' + result[1] + ' points!')
+    } else {
+        message_to_user('text-message', 'Game over!<br>Your final score is: ' + result[1] + ' points.')
+    }
+}
+
+
+
+
 /* UTILITIES FUNCTIONS */
 function fakeset() {
     // A function creating a set of integers number from 1 to 49.
@@ -88,92 +119,32 @@ function message_to_user(HTML_idElement, content) {
     document.getElementById(HTML_idElement).innerHTML = content
 }
 
-
-function radioInput__checked_value(name) {
-    // A function accepting a name of HTML input elements of type "radio", and returning the value of the checked option.
-    var array = document.getElementsByName(name)
-    for (i = 0; i < array.length; i++) {
-        if (array[i].checked) {
-            return array[i].value
-        }
-    }
-}
-
-
 /***********************/
 /* --- MAIN SCRIPT --- */
 /***********************/
-/* Function */
-function opening_button() {
-    level = parseInt(radioInput__checked_value('level')) //Chosenlevel of difficulty by user
-    levelMax = difficultLevel(level)
-    losingNumbers = randomNumberSet(totalRandom, levelMax) 
+var button1 = document.getElementById('button1')
+var button2 = document.getElementById('button2')
+var button3 = document.getElementById('button3')
 
-    // resettting variables
-    message_to_user('score-message', 0) 
-    message_to_user('level-text', level)
-    attempted = [] 
 
-    build_mainBoard('main-board', levelMax) // Building the board
-    mainBoard_buttons = document.getElementsByClassName('main-board-button')
-    for (let i = 0; i < mainBoard_buttons.length; i++) { // Adding class to losing buttons
-        if (losingNumbers.has(i + 1)) {
-            document.getElementById('button-board-' + (i + 1)).classList += ' losing-numbers'}
-    }                                        
-    
-    message_to_user('text-message', 'Choose a number!')
 
-    for (let i = 0; i < mainBoard_buttons.length; i++) {
-        mainBoard_buttons[i].addEventListener('click', mainPhase);
+/* EVENTS */
+button1.addEventListener('click', 
+    function() {
+        gameplay(1, 16)
     }
-}
+) 
 
 
-
-function mainPhase() {
-    singleAttempt = parseInt(this.value)
-    document.getElementById('button-board-' + this.value).disabled = true  // disabling button
-    document.getElementById('button-board-' + this.value).classList += ' attempted'
-
-    if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
-        attempted.push(singleAttempt)
-        if (attempted.length < levelMax - totalRandom) {
-            message_to_user('score-message', attempted.length)
-            message_to_user('text-message', 'You got it right!<br><br>The game continue.')
-        }
-        else {
-            endgame(true, attempted.length) // player win
-        }
-    } else { 
-        endgame(false, attempted.length)
+button2.addEventListener('click', 
+    function() {
+        gameplay(2, 16)
     }
-}
+) 
 
-function endgame(result, score) {
-    for (let i = 0; i < mainBoard_buttons.length; i++) {
-        mainBoard_buttons[i].disabled = true;
+
+button3.addEventListener('click', 
+    function() {
+        gameplay(3, 16)
     }
-
-    if (result) {
-        message_to_user('text-message', 'You win!<br><br>You scored' + score + ' points!')
-    } else {
-        message_to_user('text-message', 'Game over!<br><br>Your final score is: ' + score + ' points.')
-    }
-}
-
-
-/*GLOBAL VARIABLES*/
-
-var play_button = document.getElementById('play-button')
-const totalRandom = 16
-var level
-var levelMax 
-var losingNumbers
-var mainBoard_buttons
-var attempted = []
-
-/* GAMEPLAY */
-
-play_button.addEventListener('click', opening_button) 
-
-
+) 

@@ -109,8 +109,10 @@ function opening_button() {
     levelMax = difficultLevel(level)
     losingNumbers = randomNumberSet(totalRandom, levelMax) 
 
-    message_to_user('score-message', 0) //resetting score
+    // resettting variables
+    message_to_user('score-message', 0) 
     message_to_user('level-text', level)
+    attempted = [] 
 
     build_mainBoard('main-board', levelMax) // Building the board
     mainBoard_buttons = document.getElementsByClassName('main-board-button')
@@ -119,7 +121,7 @@ function opening_button() {
             document.getElementById('button-board-' + (i + 1)).classList += ' losing-numbers'}
     }                                        
     
-    message_to_user('text-message', 'Choose a number')
+    message_to_user('text-message', 'Choose a number!')
 
     for (let i = 0; i < mainBoard_buttons.length; i++) {
         mainBoard_buttons[i].addEventListener('click', mainPhase);
@@ -137,7 +139,7 @@ function mainPhase() {
         attempted.push(singleAttempt)
         if (attempted.length < levelMax - totalRandom) {
             message_to_user('score-message', attempted.length)
-            message_to_user('text-message', 'You got it right!\nThe game continue.')
+            message_to_user('text-message', 'You got it right!<br><br>The game continue.')
         }
         else {
             endgame(true, attempted.length) // player win
@@ -153,9 +155,9 @@ function endgame(result, score) {
     }
 
     if (result) {
-        message_to_user('text-message', 'You win!\nYou scored' + score + ' points!')
+        message_to_user('text-message', 'You win!<br><br>You scored' + score + ' points!')
     } else {
-        message_to_user('text-message', 'Game over!<br>Your final score is: ' + score + ' points.')
+        message_to_user('text-message', 'Game over!<br><br>Your final score is: ' + score + ' points.')
     }
 }
 
@@ -172,6 +174,6 @@ var attempted = []
 
 /* GAMEPLAY */
 
-play_button.addEventListener('click', opening_button) // populate level, levalMax, losingNUmbers
+play_button.addEventListener('click', opening_button) 
 
 

@@ -84,6 +84,11 @@ li {
     color: #fff;
 }
 
+/* APP */
+.app {
+    max-width: 1000px;
+}
+
 /* main: MAIN MENU */
 .main-menu {
     padding: 5px 20px;
@@ -97,8 +102,11 @@ li {
 /* main: MESSAGE-WRAPPER */
 .message-wrapper {
     flex-basis: 25%;
-    background: red;
-    align-self: flex-start;
+    margin: 0 auto
+}
+
+.message-wrapper header {
+    margin-bottom: 25px;
 }
 
 .message-wrapper .row {
@@ -119,10 +127,15 @@ li {
     align-items: center;
 }
 
+.text-box {
+    margin: 25px 45px;
+}
 
 /* main: MAIN-TABLE */
 .main-board {
+    margin: 0 auto;
     width: 400px;
+    align-content: start;
 }
 
 .main-board-button {
