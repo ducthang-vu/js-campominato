@@ -76,6 +76,25 @@ function mainPhase(levelMax, totalRandom, losingNumbers) {
 }
               
 
+function gameplay(userChoise, totalRandom) {
+    var levelMax = difficultLevel(userChoise) //Chosing level of difficulty
+
+    build_mainBoard('main-board', levelMax)
+
+    const losingNumbers = randomNumberSet(totalRandom, levelMax) 
+
+    var result = mainPhase(levelMax, totalRandom, losingNumbers)  //array with overall result
+    
+    if (result[0]) {
+        message_to_user('text-message', 'You win!\nYou scored' + result[1] + ' points!')
+    } else {
+        message_to_user('text-message', 'Game over!<br>Your final score is: ' + result[1] + ' points.')
+    }
+}
+
+
+
+
 /* UTILITIES FUNCTIONS */
 function fakeset() {
     // A function creating a set of integers number from 1 to 49.
@@ -99,8 +118,6 @@ function message_to_user(HTML_idElement, content) {
     //A function accepting a var and HTML element ID, and adding such var as content of said HTML element
     document.getElementById(HTML_idElement).innerHTML = content
 }
-
-
 
 /***********************/
 /* --- MAIN SCRIPT --- */
@@ -131,20 +148,3 @@ button3.addEventListener('click',
         gameplay(3, 16)
     }
 ) 
-
-
-
-/* GAMEPLAY */
-var levelMax = difficultLevel(userChoise) //Chosing level of difficulty
-
-build_mainBoard('main-board', levelMax)
-
-const losingNumbers = randomNumberSet(totalRandom, levelMax) 
-
-var result = mainPhase(levelMax, totalRandom, losingNumbers)  //array with overall result
-
-if (result[0]) {
-    message_to_user('text-message', 'You win!\nYou scored' + result[1] + ' points!')
-} else {
-    message_to_user('text-message', 'Game over!<br>Your final score is: ' + result[1] + ' points.')
-}

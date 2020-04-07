@@ -47,6 +47,26 @@ function promtpUser(max, invalid_array) {
     return user_value
 }
 
+
+function gettingValue(){
+    document.getElementById('button-selection').addEventListener('click', 
+        function() {
+            user_value = document.getElementById('selection').value
+        }
+    )
+    return user_value
+}
+
+
+function userSelection(gettingValue) {
+    var user_selection
+    gettingValue()
+    
+    
+    return user_selection
+}
+
+
 /*
 function getting_userValue(HTML_idElement) {
     //A function accepting a 'HTML_idElement'; and asking, via the 'message_to_user' function, the user to enter a number 'user_value', by using clicking on the the HTML element. 
@@ -125,7 +145,7 @@ function mainPhase(levelMax, totalRandom, losingNumbers, HTML_idElement) {
 function gameplay(userChoise, totalRandom) {
     var levelMax = difficultLevel(userChoise) //Chosing level of difficulty
 
-    build_mainBoard('main-board', levelMax)
+    //build_mainBoard('main-board', levelMax)
 
     const losingNumbers = randomNumberSet(totalRandom, levelMax) 
 
