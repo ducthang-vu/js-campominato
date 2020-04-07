@@ -86,9 +86,7 @@ function startGame() {
     losingNumbers = randomNumberSet(totalRandom, levelMax) 
 
     // reset game
-    message_to_user(score_box, 0) 
-    message_to_user('level-text', level)
-    attempted = [] 
+    attempted = []
 
     // Building the board with buttons, and creating a collection thereof
     build_mainBoard('main-board', levelMax) 
@@ -98,8 +96,10 @@ function startGame() {
     for (let i = 0; i < mainBoard_buttons.length; i++) { 
         if (losingNumbers.has(i + 1)) {
             document.getElementById('button-board-' + (i + 1)).classList += ' losing-numbers'}
-    }                                        
-    
+    }         
+
+    message_to_user('level-text', level)
+    message_to_user(score_box, attempted.length) 
     message_to_user(text_box, 'Choose a number!')
 
     // Enabling the buttons
