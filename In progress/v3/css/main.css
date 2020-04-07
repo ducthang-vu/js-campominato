@@ -34,8 +34,9 @@ li {
 }
 
 .container {
-    padding: 10px;
+    padding: 25px;
     border: 2px solid #fff;
+    height: 454px;
 }
 
 .flex-nw {
@@ -53,6 +54,10 @@ li {
 
 .central {
     margin: auto;
+}
+
+.text-right {
+    text-align: right;
 }
 
 .green {
@@ -79,14 +84,44 @@ li {
     color: #fff;
 }
 
-/* main: message-wrapper */
-.message-wrapper {
-    background: red;
+/* main: MAIN MENU */
+.main-menu {
+    padding: 5px 20px;
+    justify-content: flex-end;
 }
+
+.main-menu * {
+    flex-basis: calc(100% / 3)
+}
+
+/* main: MESSAGE-WRAPPER */
+.message-wrapper {
+    flex-basis: 25%;
+    background: red;
+    align-self: flex-start;
+}
+
+.message-wrapper .row {
+    justify-content: center;
+}
+
+.output-wrapper {
+    margin: 10px;
+}
+
+.output-box {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #fff;
+    font-size: 200%;
+    font-weight: 800;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* main: MAIN-TABLE */
 .main-board {
-    margin-top:25px;
     width: 400px;
 }
 
@@ -95,8 +130,23 @@ li {
     flex-basis: 40px;
     height: 40px;
     font-size: 75%;
+    background: gray;
 }
 
+.main-board-button.attempted:disabled {
+    background: green;
+    color: #fff
+}
+
+.main-board-button:not(.attempted.losing-numbers):disabled {
+    background: blue;
+    color: #fff;
+}
+
+.main-board-button.losing-numbers:disabled {
+    background: red;
+    color: #fff;
+}
 
 
 /* FOOTER  */

@@ -37,20 +37,8 @@ function randomNumberSet(n, max) {
 }
 
 
-function promtpUser(max, invalid_array) {
-    //A function accepting an integer 'max' and an array 'invalid_array', and prompting user to enter a number 'user_value', as many times as necessary until 1 < 'user_value' <= max and != from any item of 'invalid_array'. Returns the 'user_value'.
-    var user_value = parseInt(prompt('Enter a number between 1 and ' + max))
-    while (isNaN(user_value) || user_value < 1 || user_value > max || invalid_array.includes(user_value)) {
-        user_value = parseInt(prompt('Your number is not valid, enter a diferrent number between 1 and ' + max + ': '))
-    }
-
-    return user_value
-}
-
-
-// TODO -- VALIDATION
 function resultOfAttempt(user_value, invalid_set) {
-    //A function accepting a number 'user_value' and a set 'invalid_set'; and returing true if 'user_value' is not an element of the set.
+    //A function accepting a variable 'user_value' and a set 'invalid_set'; and returing true if 'user_value' is not an element of the set.
     if (invalid_set.has(user_value)) {
         return false    //game over
     }
@@ -119,14 +107,19 @@ function radioInput__checked_value(name) {
 function opening_button() {
     level = parseInt(radioInput__checked_value('level')) //Chosenlevel of difficulty by user
     levelMax = difficultLevel(level)
-    
     losingNumbers = randomNumberSet(totalRandom, levelMax) 
 
+    message_to_user('score-message', 0) //resetting score
     message_to_user('level-text', level)
-    build_mainBoard('main-board', levelMax) // Building the board
-    message_to_user('text-message', 'Choose a number')
 
+    build_mainBoard('main-board', levelMax) // Building the board
     mainBoard_buttons = document.getElementsByClassName('main-board-button')
+    for (let i = 0; i < mainBoard_buttons.length; i++) { // Adding class to losing buttons
+        if (losingNumbers.has(i + 1)) {
+            document.getElementById('button-board-' + (i + 1)).classList += ' losing-numbers'}
+    }                                        
+    
+    message_to_user('text-message', 'Choose a number')
 
     for (let i = 0; i < mainBoard_buttons.length; i++) {
         mainBoard_buttons[i].addEventListener('click', mainPhase);
@@ -137,25 +130,32 @@ function opening_button() {
 
 function mainPhase() {
     singleAttempt = parseInt(this.value)
+    document.getElementById('button-board-' + this.value).disabled = true  // disabling button
+    document.getElementById('button-board-' + this.value).classList += ' attempted'
 
     if (resultOfAttempt(singleAttempt, losingNumbers)) {  //check if number is in set
         attempted.push(singleAttempt)
         if (attempted.length < levelMax - totalRandom) {
-            message_to_user('text-message', 'You got it right! You score now is: is: ' + attempted.length + '. \nThe game continue.')
+            message_to_user('score-message', attempted.length)
+            message_to_user('text-message', 'You got it right!\nThe game continue.')
         }
         else {
-            endgame(true, attempted.length)
+            endgame(true, attempted.length) // player win
         }
     } else { 
-        edngame(false, attempted.length)
+        endgame(false, attempted.length)
     }
 }
 
-function endgame(array) {
-    if (result[0]) {
-        message_to_user('text-message', 'You win!\nYou scored' + result[1] + ' points!')
+function endgame(result, score) {
+    for (let i = 0; i < mainBoard_buttons.length; i++) {
+        mainBoard_buttons[i].disabled = true;
+    }
+
+    if (result) {
+        message_to_user('text-message', 'You win!\nYou scored' + score + ' points!')
     } else {
-        message_to_user('text-message', 'Game over!<br>Your final score is: ' + result[1] + ' points.')
+        message_to_user('text-message', 'Game over!<br>Your final score is: ' + score + ' points.')
     }
 }
 
@@ -166,13 +166,10 @@ var play_button = document.getElementById('play-button')
 const totalRandom = 16
 var level
 var levelMax 
-
 var losingNumbers
-
 var mainBoard_buttons
-var score = 0;
-
 var attempted = []
+
 /* GAMEPLAY */
 
 play_button.addEventListener('click', opening_button) // populate level, levalMax, losingNUmbers
