@@ -92,7 +92,9 @@ function startGame() {
     // Building the board with buttons
     build_mainBoard('main-board', levelMax) 
     mainBoard_buttons = document.getElementsByClassName('main-board-button')
-    for (let i = 0; i < mainBoard_buttons.length; i++) { // Adding class to losing buttons
+
+    // Adding class to losing buttons
+    for (let i = 0; i < mainBoard_buttons.length; i++) { 
         if (losingNumbers.has(i + 1)) {
             document.getElementById('button-board-' + (i + 1)).classList += ' losing-numbers'}
     }                                        
@@ -107,7 +109,7 @@ function startGame() {
 
 
 function mainPhase() {
-    singleAttempt = parseInt(this.value)
+    singleAttempt = parseInt(this.value)    // value from user
     document.getElementById('button-board-' + this.value).disabled = true  // disabling button
     document.getElementById('button-board-' + this.value).classList += ' attempted'
 
