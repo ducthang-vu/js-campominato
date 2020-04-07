@@ -13,7 +13,7 @@ console.log('main.js is working')
 
 /* UTILITIES FUNCTIONS */
 function build_mainBoard(HTML_idElement, total) {
-    //A function accepting a integer 'total' and a HTML ID element; and creating a number 'total' of button as innerHTML of the givern element. Each button contain as text a integer, in such a way that each button has a different number from 1 to 'total'.
+    //A function accepting an integer 'total' and a HTML ID element; and creating a number 'total' of button as innerHTML of the given element. Each button contains as text an integer, in such a way that each button has a different number from 1 to 'total'.
     var content = ''
     for (i = 1; i <= total; i++) {
         content += '<button id="button-board-' + i + '" class="button main-board-button" value="' + i + '"><span>' + i + '</span></button>'
@@ -23,7 +23,7 @@ function build_mainBoard(HTML_idElement, total) {
 
 
 function message_to_user(HTML_idElement, content) {
-    //A function accepting a var and HTML element ID, and adding such var as content of said HTML element
+    //A function accepting a HTML element ID and a variable, and adding such var as content of said HTML element.
     document.getElementById(HTML_idElement).innerHTML = content
 }
 
@@ -72,9 +72,9 @@ function randomNumberSet(n, max) {
 function resultOfAttempt(user_value, invalid_set) {
     //A function accepting a variable 'user_value' and a set 'invalid_set'; and returing true if 'user_value' is not an element of the set.
     if (invalid_set.has(user_value)) {
-        return false    //game over
+        return false    //game should end
     }
-    return true //game continue
+    return true     //game should continue
 }
     
 
