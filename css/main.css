@@ -99,6 +99,10 @@ li {
     flex-basis: calc(100% / 3)
 }
 
+#play-button {
+    cursor: pointer; 
+}
+
 /* main: MESSAGE-WRAPPER */
 .message-wrapper {
     flex-basis: 25%;
