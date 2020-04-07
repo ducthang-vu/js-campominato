@@ -89,7 +89,8 @@ function startGame() {
     message_to_user('level-text', level)
     attempted = [] 
 
-    build_mainBoard('main-board', levelMax) // Building the board
+    // Building the board with buttons
+    build_mainBoard('main-board', levelMax) 
     mainBoard_buttons = document.getElementsByClassName('main-board-button')
     for (let i = 0; i < mainBoard_buttons.length; i++) { // Adding class to losing buttons
         if (losingNumbers.has(i + 1)) {
