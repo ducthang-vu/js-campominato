@@ -157,12 +157,12 @@ li {
 }
 
 .main-board-button.losing-numbers.attempted:disabled {
-    background: darkred;
+    background: red;
     color: #fff;
 }
 
 .main-board-button.losing-numbers:disabled {
-    background: red;
+    background: darkred;
     color: #fff;
 }
 
