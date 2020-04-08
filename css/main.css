@@ -156,8 +156,8 @@ li {
     color: #fff
 }
 
-.main-board-button:not(.attempted.losing-numbers):disabled {
-    background: blue;
+.main-board-button.losing-numbers.attempted:disabled {
+    background: darkred;
     color: #fff;
 }
 
